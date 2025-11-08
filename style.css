@@ -1,0 +1,508 @@
+/* ======================= PRELOADER ======================= */
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #007bff, #004aad);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 9999;
+    overflow: hidden;
+    animation: bgShift 5s infinite alternate ease-in-out;
+}
+
+@keyframes bgShift {
+    from {
+        background: radial-gradient(circle at top left, #007bff, #003c9e);
+    }
+
+    to {
+        background: radial-gradient(circle at bottom right, #009eff, #004aad);
+    }
+}
+
+.loader-content {
+    text-align: center;
+    color: #fff;
+    animation: fadeIn 1.2s ease forwards;
+}
+
+.spinner {
+    font-size: 3.5rem;
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.fade-in,
+.fade-in-delay,
+.fade-in-delay-2 {
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.fade-in-delay {
+    animation-delay: 0.5s;
+}
+
+.fade-in-delay-2 {
+    animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.loading-bar {
+    width: 140px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 20px auto 0;
+    position: relative;
+}
+
+.loading-bar::before {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    border-radius: 5px;
+    animation: slide 1.4s ease-in-out infinite;
+}
+
+@keyframes slide {
+    0% {
+        left: -50%;
+    }
+
+    50% {
+        left: 100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+#preloader.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+/* ======================= BASE STYLES ======================= */
+body {
+    font-family: "Poppins", sans-serif;
+    background: #e7edf1;
+    color: #222;
+    scroll-behavior: smooth;
+    line-height: 1.6;
+}
+
+section {
+    padding: 100px 0;
+}
+
+/* ======================= NAVBAR ======================= */
+.navbar-custom {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.navbar-custom.scrolled {
+    background: rgba(246, 249, 252, 0.95);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand-custom {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #333;
+    text-decoration: none;
+}
+
+.navbar-brand-custom span {
+    color: #007bff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    position: relative;
+    color: #333;
+    font-weight: 500;
+    text-decoration: none;
+    padding-bottom: 5px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #007bff;
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #007bff;
+    border-radius: 2px;
+}
+
+/* ======================= HERO SECTION ======================= */
+.hero-section {
+    background-color: transparent;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+}
+
+.hero-name {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.hero-role {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: darkgrey;
+}
+
+/* ======================= MONITOR ======================= */
+.monitor-wrapper {
+    display: inline-block;
+    text-align: center;
+    border: 2px solid black;
+    padding: 20px 30px;
+    border-radius: 12px;
+    background-color: transparent;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.ecg polyline {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: ecg-line 2s linear infinite;
+    stroke: red;
+}
+
+@keyframes ecg-line {
+    0% {
+        stroke-dashoffset: 400;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+.monitor-info {
+    font-size: 0.9rem;
+    color: black;
+    margin-top: 10px;
+}
+
+.bpm,
+.spo2,
+.time {
+    display: block;
+    margin-top: 5px;
+}
+
+/* ======================= BUTTONS ======================= */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* ======================= CONTENT SECTION ======================= */
+.content-section {
+    text-align: center;
+    background: #f7fafc;
+}
+
+.content-section h2 {
+    color: #163e60;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.content-section p {
+    color: #333;
+    max-width: 750px;
+    margin: 0 auto 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* ======================= SKILLS ======================= */
+#skills .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.skill-card {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.skill-card i {
+    color: #3a86b9;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.skill-card h5 {
+    color: #1e1e1e;
+    font-weight: 600;
+}
+
+.skill-card p {
+    color: #444;
+    font-size: 0.95rem;
+    margin-top: auto;
+}
+
+/* ======================= CONTACT ======================= */
+#contact form input,
+#contact form textarea {
+    background: #eef3f7;
+    border: 1px solid #c7d4de;
+    border-radius: 8px;
+    color: #1b1b1b;
+    padding: 10px 15px;
+    transition: border 0.3s ease, background 0.3s ease;
+}
+
+#contact form input:focus,
+#contact form textarea:focus {
+    outline: none;
+    border: 1px solid #3a86b9;
+    background: #fdfefe;
+    box-shadow: 0 0 4px rgba(58, 134, 185, 0.3);
+}
+
+#contact form button {
+    background: #3a86b9;
+    border: none;
+    color: white;
+    padding: 12px 35px;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+#contact form button:hover {
+    background: #2b6a94;
+}
+
+/* ======================= FOOTER ======================= */
+footer {
+    background: #e7edf1;
+    color: #555;
+    font-size: 0.9rem;
+    padding: 30px 0;
+    border-top: 1px solid #d9e2e7;
+}
+
+/* ======================= ANIMATIONS ======================= */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ======================= EXPERIENCE CARD ======================= */
+.experience-card {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 1200px) {
+    .hero-name {
+        font-size: 2.5rem;
+    }
+
+    .hero-role {
+        font-size: 1.3rem;
+    }
+
+    .skill-card {
+        padding: 25px 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-links {
+        display: none;
+    }
+
+    .content-section p {
+        font-size: 0.95rem;
+    }
+
+    .hero-name {
+        font-size: 2.2rem;
+    }
+
+    .hero-role {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-section p {
+        font-size: 0.9rem;
+    }
+
+    .monitor-wrapper {
+        max-width: 300px;
+        padding: 15px 20px;
+    }
+
+    .skill-card {
+        flex: 1 1 45%;
+    }
+
+    .hero-name {
+        font-size: 2rem;
+    }
+
+    .hero-role {
+        font-size: 1rem;
+    }
+
+    .spinner {
+        font-size: 2.5rem;
+    }
+
+    .loading-bar {
+        width: 120px;
+        height: 5px;
+    }
+}
+
+@media (max-width: 576px) {
+    .content-section p {
+        font-size: 0.85rem;
+    }
+
+    .skill-card {
+        flex: 1 1 100%;
+    }
+
+    .monitor-wrapper {
+        max-width: 260px;
+        padding: 10px 15px;
+    }
+
+    .hero-name {
+        font-size: 1.7rem;
+    }
+
+    .hero-role {
+        font-size: 0.9rem;
+    }
+
+    .spinner {
+        font-size: 2rem;
+    }
+
+    .loading-bar {
+        width: 100px;
+        height: 4px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-name {
+        font-size: 2.5rem !important;
+    }
+
+    .hero-role {
+        font-size: 1.4rem !important;
+        color: #f0f0f0;
+    }
+
+    .hero-section {
+        padding: 50px 15px;
+    }
+}
